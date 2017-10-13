@@ -2,7 +2,7 @@ $("img").hover(function(){
 	console.log('Hover');
 
 },
-funciton(){
+function(){
 	var alt = $(this).attr('alt');
 	console.log(alt);
 }
