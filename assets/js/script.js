@@ -14,8 +14,9 @@ $("button").click(function(){
 	
   	//var formData = $(data).serializeArray(); // Create array of object
   	var jsonConvertedData = JSON.stringify(data);  // Convert to json
-  	console.log(jsonConvertedData);
+  	console.log(data["name"]);
 
+  	$("<h2>"+data["name"]+"</h2>").appendTo(".test");
 
 	//console.log(data);
   $("textarea").val(jsonConvertedData);
