@@ -11,9 +11,14 @@ function(){
 
 $("button").click(function(){
 	$.getJSON( "https://swapi.co/api/people/1/", function( data ) {
+	
+  	//var formData = $(data).serializeArray(); // Create array of object
+  	var jsonConvertedData = JSON.stringify(data);  // Convert to json
+  	console.log(jsonConvertedData);
 
-$("textarea").val("name: ");
-  $("textarea").val(data["name"]);
+
+	//console.log(data);
+  $("textarea").val(jsonConvertedData);
   // var items = [];
   // $.each( data, function( key, val ) {
   //   items.push( "<li id='" + key + "'>" + val + "</li>" );
