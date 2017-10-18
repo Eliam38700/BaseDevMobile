@@ -66,36 +66,53 @@ $(".btn2").click(function(){
 });
 });
   var items = [];
-
+  var lienApi = "";
 $(".btn3").click(function(){
-  console.log('btn 3 click');
-  for (var i = 1; i <= 9; i++) {
-    console.log('requete ' + i);
-    requete(i);
-    console.log('fin requete ' + i);
-  }
+  
+  requete("https://swapi.co/api/people/?page=1");
   //console.log('btn 3 apres for');
   //console.log(items);
   //$(".allName").html("<ul>" + items.join("") + "</ul>");
-
   
 });
 
-function requete(i){
-  $.getJSON( "https://swapi.co/api/people/?page="+i, function( data ) {
+function requete(lien ){
   
+  $.getJSON( (lienApi == "")?lien : lienApi, function( data ) {
+    lienApi = data["next"];
+    console.log(lienApi);
     var jsonConvertedData = JSON.stringify(data);  // Convert to json
     
     //console.log(data["results"]);
     $.each( data["results"], function( key, val ) {
       //console.log(val);
-      items.push( "<button id='" + key + "' class= \'btn-modal\'>" + val["name"] + "</button>" );
+      items.push( "<button id='" + key + "' onclick=\"showModal()\" class= \'btn-modal\'>" + val["name"] + "</button>" );//création de mes buttons
       
     })
-    $(".allName").append(items);
+    $(".allName").html("<ul>" + items.join("") + "</ul>") //j'ecrase à chaque fois les données précedemment affichées
+    
+    if(lienApi != null){ // vérifie si la requette du prochain lien a été une réussite dans le cas contraire pas de récurssion
+      requete(lien);
+    }
+
   });
 }
 
+// Get the modal
+var modal = document.getElementById('myModal');
 
+function showModal(){
+   modal.style.display = "block";
+}
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
-$("<a>").appendTo("")
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
