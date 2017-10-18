@@ -70,7 +70,7 @@ $(".btn2").click(function(){
   var items = [];
   var lienApi = "";
   var detailPerso = [];
-
+  var allInformations = [];
 $(".btn3").click(function(){
   
   requete("https://swapi.co/api/people/?page=1");
@@ -90,6 +90,7 @@ function requete(lien ){
     //console.log(data);
     //console.log(data['results']['name']);
     //console.log("Details perso : "+ _.find(detailPerso,{'name': 'Luke Skywalker'}));
+    allInformations.push(data.results);
     $.each( data["results"], function( key, val ) {
       //console.log(val);
       //writeInModal(data);
@@ -100,6 +101,7 @@ function requete(lien ){
     $(".allName").html(items.join("") ) //j'ecrase à chaque fois les données précedemment affichées
     
     if(lienApi != null){ // vérifie si la requette du prochain lien a été une réussite dans le cas contraire pas de récurssion
+      console.log(allInformations);
       requete(lien);
       
     }
@@ -108,6 +110,23 @@ function requete(lien ){
 }
 
 
+function getInformationAbout(character, array){
+  console.log("mon tableau :"+array);
+  console.log("type = "+typeof array[0]);
+  console.log(array[0]);
+  //console.log(array[0][0].name);
+
+  for(var i= 0; i < array.length; i++){
+      $.each( array[i], function( key, val ) {
+          if(val == character){
+          console.log("nom personnage = "+array[i][j].name);
+          $(".modal-title").text(array[i][j].name);
+        }
+      });
+
+  }
+}
+
 //Modal creation and initialize
 
 // Get the modal
@@ -115,7 +134,8 @@ var modal = document.getElementById('myModal');
 
 function showModal(){
    modal.style.display = "block";
-   $("modal-title").text("");
+   //$("modal-title").text("hello word");
+   getInformationAbout('Luke Skywalker',allInformations)
 }
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks on <span> (x), close the modal
