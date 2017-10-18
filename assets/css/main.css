@@ -9,6 +9,7 @@ h2{
 }
 
 .btn-modal:hover{
+	display: inline;
 	background-color: #bdc3c7;
 	cursor: pointer;
 }
@@ -109,6 +110,7 @@ h2{
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
+    text-align: center;
 }
 
 .modal-body {padding: 2px 16px;}

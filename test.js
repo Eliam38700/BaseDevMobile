@@ -93,6 +93,7 @@ function requete(lien ){
     $.each( data["results"], function( key, val ) {
       //console.log(val);
       //writeInModal(data);
+      detailPerso.push({'name':val.replace(/\s/g, ''),'detail': 'taille : '+data.height+'<br/>mass : '+data.mass+'skin_color : '+data.skin_color+'<br/>films : '+data.films }); 
       console.log(data.results[key].mass)
       items.push( "<button id='" + key + "' onclick=\"showModal()\" class= \'btn-modal\'>" + val["name"] + "</button>" );//création de mes buttons
       //items.push( "<button id='" + key + "' onclick=\"showModal()\" class= \'btn-modal\'>"  + "</button>"+ val["name"] );//création de mes buttons
