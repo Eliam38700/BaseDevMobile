@@ -1,3 +1,14 @@
 h2{
 	color: #fff;
 }
+
+.btn-modal{
+	display: block;
+	width: 100%;
+	background-color:transparent; 
+}
+
+.btn-modal:hover{
+	background-color: #bdc3c7;
+	cursor: pointer;
+}
